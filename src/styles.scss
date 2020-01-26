@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,10 +21,6 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 1rem;
-}
-
-a {
-  text-decoration: none;
 }
 
 a:hover {
@@ -117,35 +116,10 @@ textarea {
 hr {
   margin: .5rem 0;
 }
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
-  width: 100%;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-  background: #5aad8b;
+a {
   color: #fff;
-
-  ul {
-    display: flex;
-
-    li.active a {
-      font-weight: bold;
-      color: #333333;
-      cursor: default;
-    }
-  }
-
-  a {
-    color: #fff;
-    padding: 0.45rem;
-    margin: 0 0.25rem;
-  }
+  padding: 0.45rem;
+  margin: 0 0.25rem;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

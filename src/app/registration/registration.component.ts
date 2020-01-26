@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -28,15 +29,15 @@ export class RegistrationComponent implements OnInit {
 
   setCapital() {
     const cityMap = {
-      ru:'Moscow',
-      bg:'Sofia',
-      de:'Berlin'
-    }
+      ru: 'Moscow',
+      bg: 'Sofia',
+      de: 'Berlin'
+    };
     const city = cityMap[this.form.get('address').get('country').value];
-  console.log(city);
-  this.form.patchValue({
-    address:{city: city}
-  })
+  //  console.log(city);
+    this.form.patchValue({
+    address: {city}
+  });
   }
 
   addSkill() {

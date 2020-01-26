@@ -363,7 +363,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1>About page</h1>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col1\">\n           <img src=\"https://sun9-56.userapi.com/c624521/v624521717/129cc/lXC4tvRisss.jpg\" >\n        </div>\n        <div class=\"col2\">\n            <p>My name is Anna Korotkova and I want to become an Angular developer! This blog is created to show examples of my work.\n            Particle physics and High Energy Physics were for me the main course of my life.\n                Nevertheless, now, I feel that I want to change my career path dramatically.\n            </p>\n        </div>\n    </div>\n<div class=\"row\">\n    <span>Short CV</span>\n</div>\n</div>\n\n\n";
+    __webpack_exports__["default"] = "<h1>About me:</h1>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col1\">\n           <img src=\"https://sun9-56.userapi.com/c624521/v624521717/129cc/lXC4tvRisss.jpg\" >\n        </div>\n        <div class=\"col2\">\n            <p>My name is Anna Korotkova and I want to become an Angular developer! This blog is created to show examples of my work.\n            Particle physics and High Energy Physics were for me the main course of my life.\n                Nevertheless, now, I feel that I want to change my career path dramatically.\n            </p>\n        </div>\n    </div>\n    <div class=\"row\">\n<div class=\"card\">\n    <strong>PERSONAL SKILLS AND COMPETENCES:</strong>\n    <ul>\n        <li>C++/STL</li>\n        <li>HTML, CSS   </li>\n        <li>JavaScript , PHP,  MySQL </li>\n        <li>Ajax, Joomla, Angular 8, bash </li>\n    </ul>\n</div>\n    <div class=\"card\">\n        <strong>LANGUAGES:</strong>\n        <ul>\n            <li>Russian Native (C2)</li>\n            <li>English\t(B2, TOEFL 2019 certificate, 80 marks)</li>\n            <li>Bulgarian Beginner (A1)  </li>\n        </ul>\n    </div>\n    </div>\n    <div class=\"mat-body\">\n        <p>EDUCATION:</p>\n        <strong>2001-2006 Faculty Physics and Computer Science,  Smolensk State University, Russia</strong>\n        <hr>\n        <p>   EMPLOYMENT HISTORY:</p>\n        <strong>Joint Institute for Nuclear Research</strong><br>\n        <span>Researcher\t\t\t2013-2019</span>\n        <ul><li>• Developing scientific applications in C ++, bash, Python (Ubuntu/Debian OS)</li>\n            <li>• Developing website for monitoring main trigger values, accelerator beam intensity and others\n                <br> (<a href=\"http://gibsdata.jinr.ru/\" target=\"_blank\">http://gibsdata.jinr.ru/</a>, <a href=\"http://sqm.jinr.ru\" target=\"_blank\">http://sqm.jinr.ru</a>,\n                <a href=\"https://angular-testproject-1fab8.web.app/?q=1 \" target=\"_blank\">http://angular-testproject-1fab8.web.app/?q=1</a> )\n            </li>\n            </ul>\n        <span>Junior Researcher \t\t2007-2013</span>\n        <ul>\n        <li>\n            <li>\n                • Developed application in C++(Qt) to handle Laser system via COM port.</li>\n           <li> • Scientific researches for rare kaon decays at CERN (NA62 collaboration)</li>\n        </ul>\n\n    </div>\n</div>\n\n\n";
     /***/
   },
 
@@ -443,7 +443,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<div class=\"backdrop\"></div>\n\n<div class=\"modal\">\n    <nav class=\"navbar\">\n        <h1>{{ title }}</h1>\n    </nav>\n\n    <p>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, sint.\n    </p>\n\n    <button class=\"btn\" (click)=\"close.emit()\">Just Close me, please!</button>\n</div>\n";
+    __webpack_exports__["default"] = "\n<!--<div class=\"backdrop\"></div>-->\n\n<!--<div class=\"modal\">-->\n<!--    <nav class=\"navbar\">-->\n<!--        <h1>{{ title }}</h1>-->\n<!--    </nav>-->\n\n<!--    <p>-->\n<!--        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, sint.-->\n<!--    </p>-->\n\n<!--    <button class=\"btn\" (click)=\"close.emit()\">Just Close me, please!</button>-->\n<!--</div>-->\n";
     /***/
   },
 
@@ -563,7 +563,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1>Todos test page</h1>\n<hr>\n<app-todo-form></app-todo-form>\n  <div class=\"filter\">\n    <input class=\"input\" type=\"text\" placeholder=\"Filter todo by title...\" [(ngModel)]=\"searchString\">\n  </div>\n\n\n<ul *ngIf=\"todosService.todos.length; else noTodos\">\n<!--<li *ngFor=\"let todo of todosService.todos | slice:190:210| todosFilter:searchString; let i=index\">-->\n<li *ngFor=\"let todo of todosService.todos| todosFilter:searchString; let i=index\">\n<span [class.done]=\"todo.completed\">\n{{todo.title}}\n  <input type=\"checkbox\" [checked]=\"todo.completed\" (change)=\"onChange(todo.id)\">\n</span>\n<small>\n{{todo.date | date:'medium'}}\n</small>\n<button class=\"rm\" (click)=\"removeTodo(todo.id)\">x</button>\n</li>\n</ul>\n\n<ng-template #noTodos>\n<p style=\"text-align:center;\">No todos now!</p>\n</ng-template>\n\n<!--<p *ngIf=\"loading\">Loading ...</p>-->\n";
+    __webpack_exports__["default"] = "<h1>Todos test page</h1>\n<hr>\n<app-todo-form></app-todo-form>\n  <div class=\"filter\">\n    <input class=\"input\" type=\"text\" placeholder=\"Filter todo by title...\" [(ngModel)]=\"searchString\">\n  </div>\n\n\n<ul *ngIf=\"todosService.todos.length; else noTodos\">\n\n<li *ngFor=\"let todo of todosService.todos| todosFilter:searchString; let i=index\">\n<span [class.done]=\"todo.completed\">\n{{todo.title}}\n  <input type=\"checkbox\" [checked]=\"todo.completed\" (change)=\"onChange(todo.id)\">\n</span>\n<small>\n{{todo.date | date:'medium'}}\n</small>\n<button class=\"rm\" (click)=\"removeTodo(todo.id)\">x</button>\n</li>\n</ul>\n\n<ng-template #noTodos>\n<p style=\"text-align:center;\">No todos now!</p>\n</ng-template>\n\n<!--<p *ngIf=\"loading\">Loading ...</p>-->\n";
     /***/
   },
 
@@ -1705,8 +1705,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _about_about_component__WEBPACK_IMPORTED_MODULE_5__["AboutComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _posts_posts_component__WEBPACK_IMPORTED_MODULE_7__["PostsComponent"], _post_post_component__WEBPACK_IMPORTED_MODULE_8__["PostComponent"], _about_extra_about_extra_component__WEBPACK_IMPORTED_MODULE_9__["AboutExtraComponent"], _todos_todos_component__WEBPACK_IMPORTED_MODULE_13__["TodosComponent"], _todo_form_todo_form_component__WEBPACK_IMPORTED_MODULE_14__["TodoFormComponent"], _shared_todos_flter_pipe__WEBPACK_IMPORTED_MODULE_15__["TodosFlterPipe"], _error_page_error_page_component__WEBPACK_IMPORTED_MODULE_12__["ErrorPageComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_17__["PlayerComponent"], _model_window_model_window_component__WEBPACK_IMPORTED_MODULE_24__["ModelWindowComponent"], _ref_directive__WEBPACK_IMPORTED_MODULE_25__["RefDirective"], _registration_registration_component__WEBPACK_IMPORTED_MODULE_26__["RegistrationComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"], _material_module__WEBPACK_IMPORTED_MODULE_18__["MaterialModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_19__["MatToolbarModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_21__["BrowserAnimationsModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_20__["MatProgressBarModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_22__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"] // MatProgressBarModule,
-      ],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"], _material_module__WEBPACK_IMPORTED_MODULE_18__["MaterialModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_19__["MatToolbarModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_21__["BrowserAnimationsModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_20__["MatProgressBarModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_22__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"]],
       providers: [],
       entryComponents: [_model_window_model_window_component__WEBPACK_IMPORTED_MODULE_24__["ModelWindowComponent"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
@@ -1937,7 +1936,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     MaterialModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [],
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]]
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]],
+      schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["CUSTOM_ELEMENTS_SCHEMA"]]
     })], MaterialModule);
     /***/
   },
@@ -2709,9 +2709,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.myDate = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"](function (obs) {
           setInterval(function () {
             obs.next(100 - 100 * (_this3.audioObj.duration - _this3.audioObj.currentTime) / _this3.audioObj.duration);
-            _this3.strTime = _this3.getformatedTime(_this3.audioObj.currentTime);
+            _this3.strTime = _this3.getformatedTime(_this3.audioObj.duration - _this3.audioObj.currentTime);
           }, 500);
         });
+        this.audioObj.src = this.files[0].url;
+        this.strTime = this.getformatedTime(this.audioObj.duration);
       }
 
       _createClass(ListMusicService, [{
@@ -2730,7 +2732,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "onplay",
         value: function onplay(id) {
           // Play audio
-          this.audioObj.src = this.files[id].url;
+          this.audioObj.src = this.files[id].url; // this.strTime = this.getformatedTime(this.audioObj.duration);
+
           this.audioObj.load();
           this.audioObj.play();
         }

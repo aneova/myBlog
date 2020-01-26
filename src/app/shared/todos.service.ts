@@ -20,7 +20,7 @@ export class TodosService {
         .pipe(tap(todos => this.todos = todos));
     }
 
-onToggle(id: number) {
+    onToggle(id: number) {
         const idx = this.todos.findIndex(t => t.id === id);
         this.todos[idx].completed = !this.todos[idx].completed;
 }

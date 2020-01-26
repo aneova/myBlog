@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { NgModule } from '@angular/core';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AboutComponent} from './about/about.component';
@@ -21,9 +21,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule, MatListModule} from '@angular/material';
-import { ModelWindowComponent } from './model-window/model-window.component';
+import {ModelWindowComponent } from './model-window/model-window.component';
 import {RefDirective} from './ref.directive';
 import { RegistrationComponent } from './registration/registration.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -55,11 +56,11 @@ import { RegistrationComponent } from './registration/registration.component';
         MatIconModule,
         MatListModule,
         MatButtonModule,
-        ReactiveFormsModule
-        // MatProgressBarModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule
     ],
   providers: [],
-    entryComponents:[ModelWindowComponent],
+    entryComponents: [ModelWindowComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
