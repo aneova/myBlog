@@ -2,7 +2,12 @@
   <h1>
     <a href="#">My Angular Blog</a>
   </h1>
-  <mat-slide-toggle [color]="color" (change)="changeHeader()">Change header!</mat-slide-toggle>
+
+  <input class="tslider tsliderLight" id="cb1"  (change)="changeHeader()" type="checkbox"/>
+  <label class="tsliderButton" for="cb1"></label>
+
+
+<!--  <mat-slide-toggle [color]="color" (change)="changeHeader()">Change header!</mat-slide-toggle>-->
   <ul>
     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
       <a [routerLink]="['/']">Home</a>
