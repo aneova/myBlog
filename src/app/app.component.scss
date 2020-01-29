@@ -8,14 +8,11 @@ $nav: rgba(238, 236, 225, 0.25);
   z-index: 1;
   width: 100%;
   opacity: 0.9;
-  //background: #910e44;
-
-
-  color: #fff;
+   color: #fff;
   padding: 2rem;
   ul {
     display: flex;
-    margin-right: 45rem;
+   // margin-right: 45rem;
 
     li.active a {
       font-weight: bolder;
@@ -30,7 +27,7 @@ $nav: rgba(238, 236, 225, 0.25);
       background: $nav;
       margin: 0.7rem;
       text-align: center;
-      font-size: 18px;
+      font-size: 1rem;
       -webkit-clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
       clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
       transition: all 0.4s;
