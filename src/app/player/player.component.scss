@@ -7,6 +7,7 @@
   margin-top: 8px;
   overflow: hidden;
   background-color: rgb(15, 15, 16);
+  box-shadow: 1px 1px 1px gray;
 }
 
 .terminal::before {
@@ -93,4 +94,19 @@
 
 p{
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .row{
+    padding-left: 0px;
+    display: block;
+    margin-bottom: 15px;
+  }
 }

@@ -26,7 +26,6 @@
     </mat-toolbar>
 </div>
 
-<hr style="width: 600px;margin:0px;">
 <strong> Playlist </strong>
 <div *ngFor="let f of listMusic.files">
     <p class="musicList" (click)="OnPlay(f.id)">{{f.name}} {{f.artist}}</p>

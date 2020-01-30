@@ -1,10 +1,71 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:700,900);
+$nav: rgba(238, 236, 225, 0.25);
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+  .card{
+    flex: 8;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    margin: 0 auto;
+  }
+  h1{
+    font-size: 1rem;
+  }
+
+  .container__navbar ul{
+    display: flex;
+    flex-direction: column;
+    li.active a {
+      font-weight: bolder;
+      color: #ffffff;
+      cursor: default;
+      -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+      clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+    }
+
+    li a {
+      display: block;
+      background: $nav;
+      margin: 0;
+      text-align: center;
+      font-size: 1rem;
+      -webkit-clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
+      clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
+      transition: all 0.4s;
+
+      &:hover {
+        cursor: pointer;
+        background: $nav;
+        color: #ffffff;
+        -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+        clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+      }
+    }
+  }
+
+  .card{
+    flex: 6;
+  }
+}
+
+
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -17,11 +78,173 @@ body {
   color: #333;
 }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1rem;
+p {
+  font-size: 1.5rem;
 }
+
+.bg2
+{
+  background-image: url(https://ununsplash.imgix.net/photo-1415302199888-384f752645d0?q=75&fm=jpg&s=823bdcc1b7ad955f5180efd352561016);
+  transition: all .2s ease;
+}
+.bg1
+{
+  background-image: url('https://ununsplash.imgix.net/uploads/141319062591093cefc09/ad50c1f0?q=75&fm=jpg&s=a356dd61ff3da2269124bcd12a303b7e');
+  transition: all .2s ease;
+}
+
+.tgl {
+  + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    &:after,
+    &:before {
+      position: relative;
+      display: block;
+      content: "";
+      width: 50%;
+      height: 100%;
+    }
+
+    &:after {
+      left: 0;
+    }
+
+    &:before {
+      display: none;
+    }
+  }
+
+  &:checked + .tgl-btn:after {
+    left: 50%;
+  }
+}
+
+.tgl-light {
+  + .tgl-btn {
+    background: #f0f0f0;
+    border-radius: 2em;
+    padding: 2px;
+    transition: all .4s ease;
+    &:after {
+      border-radius: 50%;
+      background: #fff;
+      transition: all .2s ease;
+    }
+  }
+
+  &:checked + .tgl-btn {
+    background: #9FD6AE;
+  }
+}
+
+
+
+
+.tslider
+{
+  display: none;
+  +.tsliderButton
+  {
+    width: 4em;
+    height: 2em;
+    cursor: pointer;
+    &:after,
+    &:before {
+      position: relative;
+      display: block;
+      content: "";
+      width: 50%;
+      height: 100%;
+    }
+
+    &:after {
+      left: 0;
+    }
+
+    &:before {
+      display: none;
+    }
+  }
+  &:checked + .tsliderButton {
+    background: #9FD6AE;
+  }
+}
+
+.tsliderLight
+{
+  +.tsliderButton
+  {
+    background: #dcf060;
+    border-radius: 2em;
+    transition: all .4s ease;
+
+    &:after {
+      border-radius: 50%;
+      background: #ff001f;
+      box-shadow: 1px 1px 2px 2px gray;
+    }
+  }
+  &:checked + .tsliderButton:after {
+    left: 50%;
+    box-shadow: 1px 1px 2px 2px black;
+  }
+}
+
+.container {
+  /** подключает flex-контекст для всех его непосредственных потомков  **/
+  display: flex;
+  /** Устанавливает главную ось main-axis, определяя тем самым направление для flex-элементов, размещаемых в контейнере.  **/
+  flex-direction: row;
+  /** Задаём ширину и выравниваем этот блок по центру  **/
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.container__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.9;
+  color: #fff;
+  padding: 2rem;
+
+  ul {
+    display: flex;
+
+    li.active a {
+      font-weight: bolder;
+      color: #ffffff;
+      cursor: default;
+      -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+      clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+    }
+
+    li a {
+      display: block;
+      background: $nav;
+      margin: 0.7rem;
+      text-align: center;
+      font-size: 1rem;
+      -webkit-clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
+      clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
+      transition: all 0.4s;
+
+      &:hover {
+        background: $nav;
+        color: #ffffff;
+        -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+        clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+      }
+    }
+  }
+}
+
 
 a:hover {
   color: #666;
@@ -85,18 +308,13 @@ img {
 }
 
 .card {
+  /**  Задаём ширину 60% **/
+  flex: 6;
+  /** Задаём порядок - элемент является вторым  **/
+  order: 0;
   padding: 1rem;
   border: #ccc 1px dotted;
   margin: 0.7rem 0;
-
-  p {
-    display: flex;
-    justify-content: space-between;
-
-    span.completed {
-      text-decoration: line-through;
-    }
-  }
 }
 
 a {

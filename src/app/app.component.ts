@@ -10,7 +10,7 @@ import {RefDirective} from './ref.directive';
 export class AppComponent {
   @ViewChild(RefDirective, {static: false} ) refDir: RefDirective;
   color   = 'accent';
-  navbar  = 'navbar bg1';
+  navbar  = 'container__navbar bg1';
   constructor(private resolver: ComponentFactoryResolver ) {}
 
   // showWindow() {
@@ -23,10 +23,10 @@ export class AppComponent {
   //   });
   // }
   changeHeader() {
-    if (this.navbar === 'navbar bg1') {
-       this.navbar = 'navbar bg2';
+    if (this.navbar === 'container__navbar bg1') {
+       this.navbar = 'container__navbar bg2';
     } else {
-      this.navbar = 'navbar bg1';
+      this.navbar = 'container__navbar bg1';
     }
   }
 }
