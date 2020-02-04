@@ -4,67 +4,6 @@ $nav: rgba(238, 236, 225, 0.25);
 
 html, body { height: 100%; }
 
-
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .container {
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-  }
-  .card{
-    flex: 8;
-  }
-
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    display: flex;
-    margin: 0 auto;
-  }
-  h1{
-    font-size: 1rem;
-  }
-
-  .container__navbar ul{
-    display: flex;
-    flex-direction: column;
-    li.active a {
-      font-weight: bolder;
-      color: #ffffff;
-      cursor: default;
-      -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
-      clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
-    }
-
-    li a {
-      display: block;
-      background: $nav;
-      margin: 0;
-      text-align: center;
-      font-size: 1rem;
-      -webkit-clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
-      clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
-      transition: all 0.4s;
-
-      &:hover {
-        cursor: pointer;
-        background: $nav;
-        color: #ffffff;
-        -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
-        clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
-      }
-    }
-  }
-
-  .card{
-    flex: 6;
-  }
-}
-
-
-
 * {
   margin: 0;
   padding: 0;
@@ -84,13 +23,25 @@ p {
 
 .bg2
 {
-  background-image: url(https://ununsplash.imgix.net/photo-1415302199888-384f752645d0?q=75&fm=jpg&s=823bdcc1b7ad955f5180efd352561016);
-  transition: all .2s ease;
+  background-color:black;
+  background-image:
+          radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+          radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+          radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+          radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+  background-position: 0 0, 40px 260px, 130px 270px, 70px 100px;
+  transition: all .5s ease;
 }
+
 .bg1
 {
-  background-image: url('https://ununsplash.imgix.net/uploads/141319062591093cefc09/ad50c1f0?q=75&fm=jpg&s=a356dd61ff3da2269124bcd12a303b7e');
-  transition: all .2s ease;
+  background: linear-gradient(#ffffff 50%, rgba(255,255,255,0) 0) 0 0,
+  radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255,255,255,0) 0) 0 0,
+  radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255,255,255,0) 0) 1rem 0 #48B;
+  background-size: 2rem 4rem;
+  background-repeat: repeat-x;
+  transition: all .5s ease;
 }
 
 .tgl {
@@ -339,5 +290,65 @@ a {
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
+
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+  .card{
+    flex: 8;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    margin: 0 auto;
+  }
+  h1{
+    font-size: 1rem;
+  }
+
+  .container__navbar ul{
+    display: flex;
+    flex-direction: column;
+    li.active a {
+      font-weight: bolder;
+      color: #ffffff;
+      cursor: default;
+      -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+      clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+    }
+
+    li a {
+      display: block;
+      background: $nav;
+      margin: 0;
+      text-align: center;
+      font-size: 1rem;
+      -webkit-clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
+      clip-path: polygon(50% 0, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 100%, 30% 100%, 0 100%, 0 0, 30% 0);
+      transition: all 0.4s;
+
+      &:hover {
+        cursor: pointer;
+        background: $nav;
+        color: #ffffff;
+        -webkit-clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+        clip-path: polygon(50% 20%, 70% 0, 100% 0, 100% 100%, 70% 100%, 50% 80%, 30% 100%, 0 100%, 0 0, 30% 0);
+      }
+    }
+  }
+
+  .card{
+    flex: 6;
+  }
+}
+
 
 

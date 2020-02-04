@@ -11,7 +11,7 @@
 }
 
 .terminal::before {
-  content: "\2022 \2022 \2022";
+  content: "\&#9834 &#9834; &#9834;";
   position: absolute;
   top: 0;
   left: 0;
@@ -79,23 +79,138 @@
 .musicList
 {
   position: relative;
-  max-width: 600px;
-  border-radius: 6px;
-  padding-top: 5px;
-  margin-top: 5px;
-  background-color: rgb(242, 241, 255);
+  max-width: 500px;
+  border-radius: 2rem;
+  background-color: #FFFFFF;
+  padding: 1rem;
+  left:25%;
 }
-
-.row{
-  padding-left: 160px;
-  display: block;
-  margin-bottom: 15px;
+h2{
+  padding: 5% 0 0 27%;
 }
-
 p{
   cursor: pointer;
+  &:hover{
+    background: powderblue;
+  }
 }
 
+.player{
+  position: relative;
+  left:25%;
+  max-width: 600px;
+}
+
+.text{
+  max-width: 600px;
+  background-color: #2b4e8b;
+  color:#FFFFFF;
+  text-align: center;
+  font-size: 2rem;
+  border-radius:3rem;
+}
+
+.skin-no-animation
+{
+  position: relative;
+  border-radius:100%;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  left: 25%;
+  border: 3px double rgba(28,110,164,0.83);
+  background-image: url('src/images/sky.jpeg');
+  background-position: 50% 50%,
+  100%,
+  20px 20px,
+  50%,
+  0 90%;
+ }
+
+
+.skin
+{
+  position: relative;
+  border-radius:100%;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  left: 25%;
+  border: 3px double rgba(28,110,164,0.83);
+  background-image: url('src/images/sky.jpeg');
+  background-position: 50% 50%,
+          100%,
+          20px 20px,
+          50%,
+          0 90%;
+  animation-name: skinRotation;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.skin-inside
+{
+  position: relative;
+  border-radius:100%;
+  width: 30px;
+  height: 30px;
+  left: 45%;
+  top:45%;
+  border: 1px double rgba(3, 14, 92, 0.83);
+  background: #f0f0f0;
+}
+
+.skin-inside2
+{
+  position: relative;
+  border-radius:100%;
+  width: 10px;
+  height: 10px;
+  left: 28%;
+  top:28%;
+  border: 2px double rgba(41, 74, 133, 0.83);
+  //margin-right: -50%;
+  background: #FFFFFF;
+}
+
+
+
+@keyframes skinRotation {
+  from {  transform: rotate(0deg);}
+  to {  transform: rotate(360deg);}
+}
+
+.mat-toolbar{
+  border: 6px solid rgba(28,110,164,0.83);
+  border-radius: 40px 40px 40px 40px;
+}
+
+.mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+  top: 18px;
+}
+.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+  height: 12px;
+  border-radius: 10px
+}
+.mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  height: 100%;
+}
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  background-color: blue;
+}
+.mat-accent .mat-slider-thumb {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border: solid 2px gray;
+  bottom: -20px;
+  right: -20px;
+}
+.mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+  background-color: white;
+}
 
 @media screen and (max-width: 768px) {
   .container {
@@ -104,9 +219,5 @@ p{
     margin: 0 auto;
   }
 
-  .row{
-    padding-left: 0px;
-    display: block;
-    margin-bottom: 15px;
-  }
+
 }

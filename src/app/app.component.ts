@@ -22,6 +22,7 @@ export class AppComponent {
   //     this.refDir.containerRef.clear()
   //   });
   // }
+
   changeHeader() {
     if (this.navbar === 'container__navbar bg1') {
        this.navbar = 'container__navbar bg2';

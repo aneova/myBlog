@@ -20,7 +20,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatListModule, MatSliderModule} from '@angular/material';
 import {ModelWindowComponent } from './model-window/model-window.component';
 import {RefDirective} from './ref.directive';
 import { RegistrationComponent } from './registration/registration.component';
@@ -41,7 +41,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     PlayerComponent,
     ModelWindowComponent,
       RefDirective,
-      RegistrationComponent,
+      RegistrationComponent
   ],
     imports: [
         BrowserModule,
@@ -57,7 +57,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         MatListModule,
         MatButtonModule,
         ReactiveFormsModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSliderModule
     ],
   providers: [],
     entryComponents: [ModelWindowComponent],

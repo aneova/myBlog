@@ -39,20 +39,26 @@ export class ListMusicService {
         this.audioObj.src = this.files[0].url;
         this.strTime = this.getformatedTime(this.audioObj.duration);
     }
-
-  private p: Promise<string> = new Promise<string> (resolve => {
-     setTimeout(() => {resolve('Promise resolved'); }, 4000);
- });
+ //
+ //  private p: Promise<string> = new Promise<string> (resolve => {
+ //     setTimeout(() => {resolve('Promise resolved'); }, 4000);
+ // });
 
 
     myDate: Observable<any> = new Observable(obs => {
         setInterval(() => {
         obs.next(100 - 100 * (this.audioObj.duration - this.audioObj.currentTime) / this.audioObj.duration);
         this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
-        }, 500);
+        }, 100);
     });
 
-getformatedTime(time: number, format: string = 'HH:mm:ss') {
+    setTrackPosition(time: number) {
+       // console.log(this.audioObj.duration * time);
+        this.audioObj.currentTime = this.audioObj.duration * time * 0.01;
+        // this.myDate = time;
+    }
+
+    getformatedTime(time: number, format: string = 'HH:mm:ss') {
         const momentTime = time * 1000;
         return moment.utc(momentTime).format(format);
     }
