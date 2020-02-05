@@ -6,18 +6,12 @@
   <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png">
     <strong>https://github.com/aneova</strong></a>
 
-<!--  <span style="text-indent:25px;"><strong>T</strong>he author of this blog is looking for a good job!-->
-<!--  This Angular website is devoted to study of Angular8 framework.-->
-<!--  The source code can be found here http://github.com/aneova.-->
-<!--  If you have any questions or suggestions about codes and performance, do not hesitate to contact me Anna dot Neova@gmail.com-->
-<!--  </span>-->
-
 <div class="console">
   <div class="console-border">Welcome Console</div>
-  <div  [@openClose]="isOpen ? 'open' : 'closed'"  *ngIf="isCursor" class="console-text"> #>
+  <div  *ngIf="isCursor" class="console-text"> #>
     {{ isOpen ? '|' : '' }}
   </div>
-  <div  [@openClose]="isOpen ? 'open' : 'closed'"  *ngIf="!isCursor" class="console-text"> #>
+  <div  *ngIf="!isCursor" class="console-text"> #>
     {{ !isCursor ? ch_ctext : '' }}
   </div>
 </div>

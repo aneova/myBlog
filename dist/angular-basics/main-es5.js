@@ -423,7 +423,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h2>Welcome to my blog page!</h2>\n<hr>\n<div class=\"container\">\n\n  <a href=\"https://github.com/aneova\" target=\"_blank\">\n  <img src=\"https://github.githubassets.com/images/modules/logos_page/Octocat.png\">\n    <strong>https://github.com/aneova</strong></a>\n\n<!--  <span style=\"text-indent:25px;\"><strong>T</strong>he author of this blog is looking for a good job!-->\n<!--  This Angular website is devoted to study of Angular8 framework.-->\n<!--  The source code can be found here http://github.com/aneova.-->\n<!--  If you have any questions or suggestions about codes and performance, do not hesitate to contact me Anna dot Neova@gmail.com-->\n<!--  </span>-->\n\n<div class=\"console\">\n  <div class=\"console-border\">Welcome Console</div>\n  <div  [@openClose]=\"isOpen ? 'open' : 'closed'\"  *ngIf=\"isCursor\" class=\"console-text\"> #>\n    {{ isOpen ? '|' : '' }}\n  </div>\n  <div  [@openClose]=\"isOpen ? 'open' : 'closed'\"  *ngIf=\"!isCursor\" class=\"console-text\"> #>\n    {{ !isCursor ? ch_ctext : '' }}\n  </div>\n</div>\n</div>\n<!--<button class=\"btn\" (click)=\"goToDoPage()\">Go to TODOS page</button>-->\n<!--<div [@openClose]=\"isOpen ? 'open' : 'closed'\">-->\n<!--  <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>-->\n<!--</div>-->\n<!--<div id=\"ctext\" *ngFor=\"let i of 'gk'\">-->\n<!--  <span style=\"color: white;\">{{i}}</span>-->\n<!--</div>-->\n";
+    __webpack_exports__["default"] = "<h2>Welcome to my blog page!</h2>\n<hr>\n<div class=\"container\">\n\n  <a href=\"https://github.com/aneova\" target=\"_blank\">\n  <img src=\"https://github.githubassets.com/images/modules/logos_page/Octocat.png\">\n    <strong>https://github.com/aneova</strong></a>\n\n<div class=\"console\">\n  <div class=\"console-border\">Welcome Console</div>\n  <div  *ngIf=\"isCursor\" class=\"console-text\"> #>\n    {{ isOpen ? '|' : '' }}\n  </div>\n  <div  *ngIf=\"!isCursor\" class=\"console-text\"> #>\n    {{ !isCursor ? ch_ctext : '' }}\n  </div>\n</div>\n</div>\n<!--<button class=\"btn\" (click)=\"goToDoPage()\">Go to TODOS page</button>-->\n<!--<div [@openClose]=\"isOpen ? 'open' : 'closed'\">-->\n<!--  <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>-->\n<!--</div>-->\n<!--<div id=\"ctext\" *ngFor=\"let i of 'gk'\">-->\n<!--  <span style=\"color: white;\">{{i}}</span>-->\n<!--</div>-->\n";
     /***/
   },
 
@@ -2962,7 +2962,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function fetchTodos() {
           var _this4 = this;
 
-          return this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=10').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (todos) {
+          return this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=20').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (todos) {
             return _this4.todos = todos;
           }));
         }
