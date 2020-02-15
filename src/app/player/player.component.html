@@ -1,6 +1,5 @@
 <!--<div [@fadeInDown] class="skin">-->
 
-
 <div class="player">
     <div class="text">
         <pre>♪ {{ listMusic.strTime }}  {{ currentFile }} ♪</pre>
@@ -13,8 +12,8 @@
         <mat-toolbar color="primary">
             <mat-slider min="0" max="listMusic.strTime" step="0.1"    name="mbar" mode="determinate "
                       (input)="pitch($event)" [value]="listMusic.myDate|async">
-
             </mat-slider>
+            <br>
             <button mat-button  (click)="OnPrev(currentId)">
                 <mat-icon mat-list-icon>fast_rewind</mat-icon>
             </button>
@@ -38,7 +37,4 @@
 <div *ngFor="let f of listMusic.files">
     <p class="musicList" (click)="OnPlay(f.id)">{{f.name}} {{f.artist}}</p>
 </div>
-
-<!--<p> {{ currentValue }} </p>-->
-
 

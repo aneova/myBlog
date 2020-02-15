@@ -39,7 +39,7 @@ p {
   background: linear-gradient(#ffffff 50%, rgba(255,255,255,0) 0) 0 0,
   radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255,255,255,0) 0) 0 0,
   radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255,255,255,0) 0) 1rem 0 #48B;
-  background-size: 2rem 4rem;
+  background-size: 1rem 2rem;
   background-repeat: repeat-x;
   transition: all .5s ease;
 }
@@ -131,13 +131,14 @@ p {
 {
   +.tsliderButton
   {
-    background: #dcf060;
+    background: #ffffff;
     border-radius: 2em;
     transition: all .4s ease;
 
     &:after {
       border-radius: 50%;
       background: #ff001f;
+      background-image: url(src/images/contrast.svg);
       box-shadow: 1px 1px 2px 2px gray;
     }
   }
@@ -310,6 +311,7 @@ a {
     display: flex;
     margin: 0 auto;
   }
+
   h1{
     font-size: 1rem;
   }
@@ -346,7 +348,7 @@ a {
   }
 
   .card{
-    flex: 6;
+    flex: 5;
   }
 }
 

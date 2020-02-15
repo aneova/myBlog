@@ -7,6 +7,32 @@ import * as moment from 'moment';
 })
 export class ListMusicService {
 
+  AudioTrackList: any = [
+      {
+          url:
+              'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1685%20Purcell%20%2C%20Trumpet%20Tune%20and%20Air.mp3',
+          name: 'Trumpet Tune and Air',
+          artist: 'Purcell',
+          id: 0
+      },
+      {
+          // tslint:disable-next-line: max-line-length
+          url: 'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1709%20Bach%20%2C%20Toccata%20in%20D%20minor.mp3',
+          name: '1709 Bach Toccata in D minor',
+          artist: 'J.S. Bach',
+          id: 1
+      },
+      {
+          // tslint:disable-next-line: max-line-length
+          url: 'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1725%20Vivaldi%20%2C%20The%20Four%20Seasons%20-%20Spring.mp3',
+          name: 'Vivaldi The four seasons. Spring.',
+          artist: 'Vivaldi',
+          id: 2
+      }
+
+
+  ];
+
   files: any = [
    {
       url:
@@ -29,8 +55,6 @@ export class ListMusicService {
       artist: 'Vivaldi',
       id: 2
     }
-
-
   ];
 
   private audioObj = new Audio();
@@ -51,6 +75,10 @@ export class ListMusicService {
         this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
         }, 100);
     });
+
+    // currentPlay: Observable<AudioTrackList> = new Observable(obs => {
+    //     obs.next(console.log('HERE'));
+    // });
 
     setTrackPosition(time: number) {
        // console.log(this.audioObj.duration * time);
