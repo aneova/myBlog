@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {TodosService} from '../shared/todos.service';
 import {delay} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {ProgressSpinnerMode, ThemePalette} from '@angular/material';
 
 @Component({
   selector: 'app-todos',
@@ -12,6 +13,9 @@ import {Router} from '@angular/router';
 export class TodosComponent implements OnInit {
   private loading = true;
   private searchString = '';
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
   constructor(private todosService: TodosService, private router: Router) { }
 
   ngOnInit() {
@@ -22,12 +26,10 @@ export class TodosComponent implements OnInit {
     });
 }
 
-  onChange(id: number)
-{
+  onChange(id: number) {
     this.todosService.onToggle(id);
 }
-    removeTodo(id: number)
-  {
+    removeTodo(id: number) {
     this.todosService.removeTodo(id);
   }
 }

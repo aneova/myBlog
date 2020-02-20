@@ -20,7 +20,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule, MatListModule, MatSliderModule} from '@angular/material';
+import {MatButtonModule, MatListModule, MatProgressSpinnerModule, MatSliderModule} from '@angular/material';
 import {ModelWindowComponent } from './model-window/model-window.component';
 import {RefDirective} from './ref.directive';
 import { RegistrationComponent } from './registration/registration.component';
@@ -58,7 +58,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         MatButtonModule,
         ReactiveFormsModule,
         MatSlideToggleModule,
-        MatSliderModule
+        MatSliderModule,
+        MatProgressSpinnerModule
     ],
   providers: [],
     entryComponents: [ModelWindowComponent],

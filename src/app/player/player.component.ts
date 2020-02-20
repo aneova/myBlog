@@ -1,8 +1,7 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ListMusicService} from '../shared/list-music.service';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import {rotateIn} from 'ng-animate';
-import {animation, state, style, transition, trigger, useAnimation} from '@angular/animations';
+import {transition, trigger, useAnimation} from '@angular/animations';
 import {MatSliderChange} from '@angular/material';
 
 @Component({
@@ -37,7 +36,7 @@ export class PlayerComponent implements OnInit {
   skinStyle = 'skin-no-animation';
 
   ngOnInit() {
-  }
+   }
 
   OnPlay(id: number) {
     this.listMusic.onplay(id);
@@ -45,31 +44,31 @@ export class PlayerComponent implements OnInit {
     this.currentId = id;
     this.state = true;
     this.skinStyle = 'skin';
-    document.getElementById("idskin").style.animationPlayState = "running";
+    document.getElementById('idskin').style.animationPlayState = 'running';
   }
 
   OnStop(id: number) {
     this.listMusic.onstop(id);
-    document.getElementById("idskin").style.animationPlayState = "paused";
+    document.getElementById('idskin').style.animationPlayState = 'paused';
     this.state = !this.state;
   }
 
   OnPause(id: number) {
     this.listMusic.onpause(id);
     this.state = !this.state;
-    document.getElementById("idskin").style.animationPlayState = "paused";
+    document.getElementById('idskin').style.animationPlayState = 'paused';
   }
 
   OnNext(id: number) {
     this.listMusic.onplay(id + 1);
     this.state = true;
     this.currentId = id + 1;
-    this.currentFile  = this.listMusic.getTrackName(id+1);
+    this.currentFile  = this.listMusic.getTrackName(id + 1);
   }
 
   OnPrev(id: number) {
     this.listMusic.onplay(id - 1);
-    this.currentFile  = this.listMusic.getTrackName(id-1);
+    this.currentFile  = this.listMusic.getTrackName(id - 1);
     this.state = true;
     this.currentId = id - 1;
   }

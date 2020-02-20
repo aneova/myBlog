@@ -461,7 +461,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h1>Todos test page</h1>\n<hr>\n<app-todo-form></app-todo-form>\n  <div class=\"filter\">\n    <input class=\"input\" type=\"text\" placeholder=\"Filter todo by title...\" [(ngModel)]=\"searchString\">\n  </div>\n\n\n<ul *ngIf=\"todosService.todos.length; else noTodos\">\n\n<li *ngFor=\"let todo of todosService.todos| todosFilter:searchString; let i=index\">\n<span [class.done]=\"todo.completed\">\n{{todo.title}}\n  <input type=\"checkbox\" [checked]=\"todo.completed\" (change)=\"onChange(todo.id)\">\n</span>\n<small>\n{{todo.date | date:'medium'}}\n</small>\n<button class=\"rm\" (click)=\"removeTodo(todo.id)\">x</button>\n</li>\n</ul>\n\n<ng-template #noTodos>\n<p style=\"text-align:center;\">No todos now!</p>\n</ng-template>\n\n<!--<p *ngIf=\"loading\">Loading ...</p>-->\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h1>Todos test page</h1>\n<hr>\n<app-todo-form></app-todo-form>\n  <div class=\"filter\">\n    <input class=\"input\" type=\"text\" placeholder=\"Filter todo by title...\" [(ngModel)]=\"searchString\">\n  </div>\n\n\n<ul *ngIf=\"todosService.todos.length; else noTodos\">\n\n<li *ngFor=\"let todo of todosService.todos| todosFilter:searchString; let i=index\">\n<span [class.done]=\"todo.completed\">\n{{todo.title}}\n  <input type=\"checkbox\" [checked]=\"todo.completed\" (change)=\"onChange(todo.id)\">\n</span>\n<small>\n{{todo.date | date:'medium'}}\n</small>\n<button class=\"rm\" (click)=\"removeTodo(todo.id)\">x</button>\n</li>\n</ul>\n\n<ng-template #noTodos>\n<p style=\"text-align:center;\">Todos are loading...</p>\n\n  <mat-progress-spinner  class=\"mat-progress-spinner\" [color]=color [mode]=mode></mat-progress-spinner>\n\n</ng-template>\n\n<!--<p *ngIf=\"loading\">Loading ...</p>-->\n");
 
 /***/ }),
 
@@ -1010,7 +1010,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
             _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_27__["MatSlideToggleModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSliderModule"]
+            _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSliderModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatProgressSpinnerModule"]
         ],
         providers: [],
         entryComponents: [_model_window_model_window_component__WEBPACK_IMPORTED_MODULE_24__["ModelWindowComponent"]],
@@ -1616,28 +1617,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let ListMusicService = class ListMusicService {
     constructor() {
-        this.AudioTrackList = [
-            {
-                url: 'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1685%20Purcell%20%2C%20Trumpet%20Tune%20and%20Air.mp3',
-                name: 'Trumpet Tune and Air',
-                artist: 'Purcell',
-                id: 0
-            },
-            {
-                // tslint:disable-next-line: max-line-length
-                url: 'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1709%20Bach%20%2C%20Toccata%20in%20D%20minor.mp3',
-                name: '1709 Bach Toccata in D minor',
-                artist: 'J.S. Bach',
-                id: 1
-            },
-            {
-                // tslint:disable-next-line: max-line-length
-                url: 'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1725%20Vivaldi%20%2C%20The%20Four%20Seasons%20-%20Spring.mp3',
-                name: 'Vivaldi The four seasons. Spring.',
-                artist: 'Vivaldi',
-                id: 2
-            }
-        ];
+        this.stream$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.audioObj = new Audio();
         this.files = [
             {
                 url: 'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1685%20Purcell%20%2C%20Trumpet%20Tune%20and%20Air.mp3',
@@ -1660,7 +1641,6 @@ let ListMusicService = class ListMusicService {
                 id: 2
             }
         ];
-        this.audioObj = new Audio();
         //
         //  private p: Promise<string> = new Promise<string> (resolve => {
         //     setTimeout(() => {resolve('Promise resolved'); }, 4000);
@@ -1671,12 +1651,8 @@ let ListMusicService = class ListMusicService {
                 this.strTime = this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
             }, 100);
         });
-        this.audioObj.src = this.files[0].url;
-        this.strTime = this.getformatedTime(this.audioObj.duration);
     }
-    // currentPlay: Observable<AudioTrackList> = new Observable(obs => {
-    //     obs.next(console.log('HERE'));
-    // });
+    getFiles() { return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(this.files); }
     setTrackPosition(time) {
         // console.log(this.audioObj.duration * time);
         this.audioObj.currentTime = this.audioObj.duration * time * 0.01;
@@ -1690,6 +1666,7 @@ let ListMusicService = class ListMusicService {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(this.files); // get a new track from array files
     }
     onplay(id) {
+        this.stream$.next();
         // Play audio
         this.audioObj.src = this.files[id].url;
         // this.strTime = this.getformatedTime(this.audioObj.duration);
@@ -1778,7 +1755,7 @@ let TodosService = class TodosService {
         this.todos = [];
     }
     fetchTodos() {
-        return this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=20')
+        return this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=200')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(todos => this.todos = todos));
     }
     onToggle(id) {
@@ -1870,7 +1847,7 @@ TodoFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".done {\n  text-decoration: line-through;\n}\n\n.rm {\n  border-radius: 50%;\n  background: green;\n  color: #fff;\n  font-size: 1rem;\n  border: none;\n  width: 20px;\n  height: 20px;\n  -webkit-transition: 0.3s all;\n  transition: 0.3s all;\n  cursor: pointer;\n}\n\n.rm:hover {\n  background: #001a00;\n}\n\n.filter {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 100%;\n  margin-bottom: 1rem;\n  height: 30px;\n}\n\n.input {\n  display: block;\n  width: 30%;\n  padding: 0.4rem;\n  font-size: 1.2rem;\n  border: 1px solid #cccccc;\n  border-radius: 5px;\n  margin: 1.2rem;\n}\n\n.list {\n  display: inline-block;\n  padding: 0px;\n  margin: 0px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdG9kb3MvQzpcXFVzZXJzXFxBbm5lZ2FcXFdlYnN0b3JtUHJvamVjdHNcXG15QmxvZy9zcmNcXGFwcFxcdG9kb3NcXHRvZG9zLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC90b2Rvcy90b2Rvcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDZCQUFBO0FDQ0o7O0FERUE7RUFFSSxrQkFBQTtFQUNBLGlCQUZPO0VBR1AsV0FBQTtFQUNBLGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSw0QkFBQTtFQUFBLG9CQUFBO0VBQ0EsZUFBQTtBQ0FKOztBREVJO0VBQ0ksbUJBQUE7QUNBUjs7QURJQTtFQUVFLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxXQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0FDRkY7O0FETUE7RUFFRSxjQUFBO0VBQ0EsVUFBQTtFQUNBLGVBQUE7RUFDQSxpQkFBQTtFQUNBLHlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0FDSkY7O0FET0E7RUFFRSxxQkFBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0FDTEYiLCJmaWxlIjoic3JjL2FwcC90b2Rvcy90b2Rvcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kb25le1xyXG4gICAgdGV4dC1kZWNvcmF0aW9uOmxpbmUtdGhyb3VnaDtcclxufVxyXG5cclxuLnJte1xyXG4gICAgJGNvbG9yOmdyZWVuO1xyXG4gICAgYm9yZGVyLXJhZGl1czo1MCU7XHJcbiAgICBiYWNrZ3JvdW5kOiRjb2xvcjtcclxuICAgIGNvbG9yOiNmZmY7XHJcbiAgICBmb250LXNpemU6MXJlbTtcclxuICAgIGJvcmRlcjpub25lO1xyXG4gICAgd2lkdGg6MjBweDtcclxuICAgIGhlaWdodDoyMHB4O1xyXG4gICAgdHJhbnNpdGlvbjouM3MgYWxsO1xyXG4gICAgY3Vyc29yOnBvaW50ZXI7XHJcblxyXG4gICAgJjpob3ZlcntcclxuICAgICAgICBiYWNrZ3JvdW5kOmRhcmtlbigkY29sb3IsIDIwJSk7XHJcbiAgICB9XHJcbn1cclxuXHJcbi5maWx0ZXJcclxue1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICB3aWR0aDogMTAwJTtcclxuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xyXG4gIGhlaWdodDogMzBweDtcclxufVxyXG5cclxuXHJcbi5pbnB1dFxyXG57XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgd2lkdGg6IDMwJTtcclxuICBwYWRkaW5nOiAwLjRyZW07XHJcbiAgZm9udC1zaXplOiAxLjJyZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgI2NjY2NjYztcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgbWFyZ2luOiAxLjJyZW07XHJcbn1cclxuXHJcbi5saXN0XHJcbntcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgcGFkZGluZzogMHB4O1xyXG4gIG1hcmdpbjogMHB4O1xyXG5cclxufVxyXG4iLCIuZG9uZSB7XG4gIHRleHQtZGVjb3JhdGlvbjogbGluZS10aHJvdWdoO1xufVxuXG4ucm0ge1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIGJhY2tncm91bmQ6IGdyZWVuO1xuICBjb2xvcjogI2ZmZjtcbiAgZm9udC1zaXplOiAxcmVtO1xuICBib3JkZXI6IG5vbmU7XG4gIHdpZHRoOiAyMHB4O1xuICBoZWlnaHQ6IDIwcHg7XG4gIHRyYW5zaXRpb246IDAuM3MgYWxsO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ucm06aG92ZXIge1xuICBiYWNrZ3JvdW5kOiAjMDAxYTAwO1xufVxuXG4uZmlsdGVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgd2lkdGg6IDEwMCU7XG4gIG1hcmdpbi1ib3R0b206IDFyZW07XG4gIGhlaWdodDogMzBweDtcbn1cblxuLmlucHV0IHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHdpZHRoOiAzMCU7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgZm9udC1zaXplOiAxLjJyZW07XG4gIGJvcmRlcjogMXB4IHNvbGlkICNjY2NjY2M7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgbWFyZ2luOiAxLjJyZW07XG59XG5cbi5saXN0IHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBwYWRkaW5nOiAwcHg7XG4gIG1hcmdpbjogMHB4O1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".done {\n  text-decoration: line-through;\n}\n\n.rm {\n  border-radius: 50%;\n  background: green;\n  color: #fff;\n  font-size: 1rem;\n  border: none;\n  width: 20px;\n  height: 20px;\n  -webkit-transition: 0.3s all;\n  transition: 0.3s all;\n  cursor: pointer;\n}\n\n.rm:hover {\n  background: #001a00;\n}\n\n.filter {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 100%;\n  margin-bottom: 1rem;\n  height: 30px;\n}\n\n.input {\n  display: block;\n  width: 30%;\n  padding: 0.4rem;\n  font-size: 1.2rem;\n  border: 1px solid #cccccc;\n  border-radius: 5px;\n  margin: 1.2rem;\n}\n\n.list {\n  display: inline-block;\n  padding: 0px;\n  margin: 0px;\n}\n\n.mat-progress-spinner {\n  left: 30rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdG9kb3MvQzpcXFVzZXJzXFxBbm5lZ2FcXFdlYnN0b3JtUHJvamVjdHNcXG15QmxvZy9zcmNcXGFwcFxcdG9kb3NcXHRvZG9zLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC90b2Rvcy90b2Rvcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDZCQUFBO0FDQ0o7O0FERUE7RUFFSSxrQkFBQTtFQUNBLGlCQUZPO0VBR1AsV0FBQTtFQUNBLGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSw0QkFBQTtFQUFBLG9CQUFBO0VBQ0EsZUFBQTtBQ0FKOztBREVJO0VBQ0ksbUJBQUE7QUNBUjs7QURJQTtFQUVFLG9CQUFBO0VBQUEsYUFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7RUFDQSxXQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0FDRkY7O0FETUE7RUFFRSxjQUFBO0VBQ0EsVUFBQTtFQUNBLGVBQUE7RUFDQSxpQkFBQTtFQUNBLHlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0FDSkY7O0FET0E7RUFFRSxxQkFBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0FDTEY7O0FEUUE7RUFFRSxXQUFBO0FDTkYiLCJmaWxlIjoic3JjL2FwcC90b2Rvcy90b2Rvcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kb25le1xyXG4gICAgdGV4dC1kZWNvcmF0aW9uOmxpbmUtdGhyb3VnaDtcclxufVxyXG5cclxuLnJte1xyXG4gICAgJGNvbG9yOmdyZWVuO1xyXG4gICAgYm9yZGVyLXJhZGl1czo1MCU7XHJcbiAgICBiYWNrZ3JvdW5kOiRjb2xvcjtcclxuICAgIGNvbG9yOiNmZmY7XHJcbiAgICBmb250LXNpemU6MXJlbTtcclxuICAgIGJvcmRlcjpub25lO1xyXG4gICAgd2lkdGg6MjBweDtcclxuICAgIGhlaWdodDoyMHB4O1xyXG4gICAgdHJhbnNpdGlvbjouM3MgYWxsO1xyXG4gICAgY3Vyc29yOnBvaW50ZXI7XHJcblxyXG4gICAgJjpob3ZlcntcclxuICAgICAgICBiYWNrZ3JvdW5kOmRhcmtlbigkY29sb3IsIDIwJSk7XHJcbiAgICB9XHJcbn1cclxuXHJcbi5maWx0ZXJcclxue1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICB3aWR0aDogMTAwJTtcclxuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xyXG4gIGhlaWdodDogMzBweDtcclxufVxyXG5cclxuXHJcbi5pbnB1dFxyXG57XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgd2lkdGg6IDMwJTtcclxuICBwYWRkaW5nOiAwLjRyZW07XHJcbiAgZm9udC1zaXplOiAxLjJyZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgI2NjY2NjYztcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgbWFyZ2luOiAxLjJyZW07XHJcbn1cclxuXHJcbi5saXN0XHJcbntcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgcGFkZGluZzogMHB4O1xyXG4gIG1hcmdpbjogMHB4O1xyXG59XHJcblxyXG4ubWF0LXByb2dyZXNzLXNwaW5uZXJcclxue1xyXG4gIGxlZnQ6MzByZW07XHJcbn1cclxuIiwiLmRvbmUge1xuICB0ZXh0LWRlY29yYXRpb246IGxpbmUtdGhyb3VnaDtcbn1cblxuLnJtIHtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgY29sb3I6ICNmZmY7XG4gIGZvbnQtc2l6ZTogMXJlbTtcbiAgYm9yZGVyOiBub25lO1xuICB3aWR0aDogMjBweDtcbiAgaGVpZ2h0OiAyMHB4O1xuICB0cmFuc2l0aW9uOiAwLjNzIGFsbDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnJtOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogIzAwMWEwMDtcbn1cblxuLmZpbHRlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xuICBoZWlnaHQ6IDMwcHg7XG59XG5cbi5pbnB1dCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICB3aWR0aDogMzAlO1xuICBwYWRkaW5nOiAwLjRyZW07XG4gIGZvbnQtc2l6ZTogMS4ycmVtO1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjY2NjO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG4gIG1hcmdpbjogMS4ycmVtO1xufVxuXG4ubGlzdCB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgcGFkZGluZzogMHB4O1xuICBtYXJnaW46IDBweDtcbn1cblxuLm1hdC1wcm9ncmVzcy1zcGlubmVyIHtcbiAgbGVmdDogMzByZW07XG59Il19 */");
 
 /***/ }),
 
@@ -1900,6 +1877,9 @@ let TodosComponent = class TodosComponent {
         this.router = router;
         this.loading = true;
         this.searchString = '';
+        this.color = 'primary';
+        this.mode = 'indeterminate';
+        this.value = 50;
     }
     ngOnInit() {
         this.todosService.fetchTodos()
