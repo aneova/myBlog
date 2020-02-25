@@ -19,8 +19,7 @@ import {MatSliderChange} from '@angular/material';
 export class PlayerComponent implements OnInit {
   @Output() slider: EventEmitter<string> = new EventEmitter<string>();
   fadeInDown: any;
-  thumbLabel = false;
-  value = 0;
+   value = 0;
 
   state = false;
   files: Array<any> = [];
@@ -35,8 +34,7 @@ export class PlayerComponent implements OnInit {
   musicFiles: [] = this.listMusic.files;
   skinStyle = 'skin-no-animation';
 
-  ngOnInit() {
-   }
+  ngOnInit() { }
 
   OnPlay(id: number) {
     this.listMusic.onplay(id);
@@ -60,17 +58,34 @@ export class PlayerComponent implements OnInit {
   }
 
   OnNext(id: number) {
-    this.listMusic.onplay(id + 1);
-    this.state = true;
-    this.currentId = id + 1;
-    this.currentFile  = this.listMusic.getTrackName(id + 1);
+    if ( id < 2 ) {
+      this.listMusic.onplay(id + 1);
+      this.state = true;
+      this.currentId = id + 1;
+      this.currentFile  = this.listMusic.getTrackName(id + 1);
+    } else {
+      id = -1;
+      this.listMusic.onplay(id + 1);
+      this.state = true;
+      this.currentId = id + 1;
+      this.currentFile  = this.listMusic.getTrackName(id + 1);
+
+    }
   }
 
   OnPrev(id: number) {
-    this.listMusic.onplay(id - 1);
-    this.currentFile  = this.listMusic.getTrackName(id - 1);
-    this.state = true;
-    this.currentId = id - 1;
+    if ( id > 0   ) {
+      this.listMusic.onplay(id - 1);
+      this.currentFile  = this.listMusic.getTrackName(id - 1);
+      this.state = true;
+      this.currentId = id - 1;
+    } else {
+      id = 3;
+      this.listMusic.onplay(id - 1);
+      this.currentFile  = this.listMusic.getTrackName(id - 1);
+      this.state = true;
+      this.currentId = id - 1;
+    }
   }
 
   getLenght(): number {
@@ -85,7 +100,7 @@ export class PlayerComponent implements OnInit {
 
   pitch($event: MatSliderChange) {
   this.value = $event.value;
-  console.log(this.value);
+  //console.log(this.value);
   this.listMusic.setTrackPosition(this.value);
 
   }

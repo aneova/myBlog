@@ -16,7 +16,7 @@ export class TodosService {
   public todos: Todo[] = [];
     constructor(private http: HttpClient) {}
     fetchTodos(): Observable<Todo[]> {
-        return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=200')
+        return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=10')
         .pipe(tap(todos => this.todos = todos));
     }
 

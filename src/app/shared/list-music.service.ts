@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {interval, Observable, Observer, of, Subject, timer} from 'rxjs';
+import {interval, Observable, Observer, of, Subject, Subscription, timer} from 'rxjs';
 import * as moment from 'moment';
 import { fromEvent } from 'rxjs';
 
@@ -8,15 +8,22 @@ import { fromEvent } from 'rxjs';
 })
 export class ListMusicService {
 
+    sub: Subscription;
     stream$: Subject<void> = new Subject<void>();
 
-    constructor() {}
+    constructor() {
+        // Loading audio
+        this.audioObj.src = this.files[0].url;
+        this.audioObj.load();
+    }
 
     private audioObj = new Audio();
     strTime: string;
 
-
-   files: any = [
+    private myObservable = this.getTrack();
+    private timerId;
+    private currentID = 0;
+    files: any = [
    {
       url:
         'https://ia801900.us.archive.org/7/items/100ClassicalMusicMasterpieces/1685%20Purcell%20%2C%20Trumpet%20Tune%20and%20Air.mp3',
@@ -46,16 +53,63 @@ export class ListMusicService {
 
 
 
+// myDate = new Observable(obs => {
+//     let timerId;
+//     timerId = setInterval(() => {
+//         obs.next(100 - 100 * (this.audioObj.duration - this.audioObj.currentTime) / this.audioObj.duration);
+//         this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
+//         console.log(this.audioObj.ended);
+//         }, 100);
+//
+//     });
+// private timerId: number;
 myDate: Observable<any> = new Observable(obs => {
-        setInterval(() => {
-        obs.next(100 - 100 * (this.audioObj.duration - this.audioObj.currentTime) / this.audioObj.duration);
-        this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
-        }, 100);
-    });
+    this.timerId = setInterval(() => {
+        if (this.audioObj.ended === false) {
+            obs.next(100 - 100 * (this.audioObj.duration - this.audioObj.currentTime) / this.audioObj.duration);
+        } else {
+            if (this.currentID < 2) {
+                this.currentID = this.currentID + 1;
+            } else {
+                this.currentID = 0;
+            }
+            console.log(this.currentID);
+
+            this.audioObj.src = this.files[this.currentID].url;
+            this.audioObj.load();
+            this.onplay(this.currentID);
+            // setTimeout(() => { clearInterval(this.timerId); }, this.audioObj.duration);
+            // obs.complete();
+        }
+    }, 200);
+});
 
 
+// Create observer object
+//     myObserver = {
+//         next: x => {
+//             setInterval(() => {
+//                 this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
+//                 //this.myDate = 100 - 100 * (this.audioObj.duration - this.audioObj.currentTime) / this.audioObj.duration;
+//                 if ( this.audioObj.ended === true) {
+//                     this.currentID = this.currentID + 1;
+//                     console.log(this.currentID);
+//                     this.audioObj.src = this.files[this.currentID].url;
+//                     this.audioObj.load();
+//                     this.onplay(this.currentID);
+//                 }
+//             }, 500);
+//         },
+//         error: err => console.error('Observer got an error: ' + err),
+//         complete: () => console.log('Observer got a complete notification'),
+//     };
 
-getFiles() {return of(this.files); }
+    // obs.next(100 - 100 * (this.audioObj.duration - this.audioObj.currentTime) / this.audioObj.duration);
+    // this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
+    // console.log(this.audioObj.ended);
+    // obs.complete(console.log('done'));
+    // if(this.audioObj.ended === true) {console.log("Finished!"); obs.complete(); obs.unsubscribe();}
+    // });
 
 setTrackPosition(time: number) {
        // console.log(this.audioObj.duration * time);
@@ -73,16 +127,26 @@ getTrack() {
   }
 
 onplay(id: number) {
-    this.stream$.next();
-    // Play audio
-    this.audioObj.src = this.files[id].url;
-    // this.strTime = this.getformatedTime(this.audioObj.duration);
-    this.audioObj.load();
-    this.audioObj.play();
-  }
+    if ( this.audioObj.currentTime === 0) {
+        this.currentID = id;
+    } else {
+        if ( this.currentID !== id) {
+            this.currentID = id;
+            this.audioObj.src = this.files[this.currentID].url;
+            this.audioObj.load();
+        }
+    }
+    this.sub = this.myDate.subscribe(value => {
+        this.strTime =  this.getformatedTime(this.audioObj.duration - this.audioObj.currentTime);
+    });
+    this.audioObj.paused ? this.audioObj.play() : this.audioObj.pause();
+}
 
 onpause(id: number) {
     this.audioObj.pause();
+    this.sub.unsubscribe();
+    console.log(this.audioObj.paused);
+
   }
 
 onstop(id: number) {
