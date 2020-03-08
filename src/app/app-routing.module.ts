@@ -9,15 +9,17 @@ import {TodosComponent} from './todos/todos.component';
 import {TodoFormComponent} from './todo-form/todo-form.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {PlayerComponent} from './player/player.component';
+import {OrganizerComponent} from './organizer/organizer.component';
 import {RegistrationComponent} from './registration/registration.component';
 
 
 const routes: Routes = [
-    {path:'', component: HomeComponent},
+    {path: '', component: HomeComponent},
     {path: 'about', component: AboutComponent},
     {path: 'todos', component: TodosComponent},
     {path: 'todosform', component: TodoFormComponent},
     {path: 'player', component: PlayerComponent},
+    {path: 'organizer', component: OrganizerComponent},
     {path: 'posts', component: PostsComponent},
     {path: 'posts/:id', component: PostComponent},
     {path: 'registration', component: RegistrationComponent},

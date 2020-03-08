@@ -25,6 +25,10 @@ import {ModelWindowComponent } from './model-window/model-window.component';
 import {RefDirective} from './ref.directive';
 import { RegistrationComponent } from './registration/registration.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { OrganizerComponent } from './organizer/organizer.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { SelectorComponent } from './selector/selector.component';
+import {MomentPipe} from './shared/moment.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     PlayerComponent,
     ModelWindowComponent,
       RefDirective,
-      RegistrationComponent
+      RegistrationComponent,
+      OrganizerComponent,
+      CalendarComponent,
+      SelectorComponent,
+      MomentPipe
   ],
     imports: [
         BrowserModule,
